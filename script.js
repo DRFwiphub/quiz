@@ -1,4 +1,4 @@
-const qustions = [
+const questions = [
 
     {
         question: "What is the capital of France?",
@@ -39,24 +39,25 @@ const qustions = [
     },
 ];
 
-const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons');
-const nextButton = document.getElementById('next-button');
+const questionElement = document.getElementById("question");
+const answerButton= document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
 
-function startquiz(){   
+function startQuiz(){   
     currentQuestionIndex = 0;
     score = 0;
-    nextButton.innerHTML = "Next";
+    nextButton.innerHTML = "next";
     showQuestion();
 }
+
 function showQuestion(){
     resetState();
     
 
-    let currentQuestion = qustions[currentQuestionIndex];
+    let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
@@ -64,16 +65,59 @@ function showQuestion(){
         const button = document.createElement('button');
         button.innerHTML = answer.text;
         button.classList.add('btn');
-        answerButtonsElement.appendChild(button);
-    }
+        answerButton.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
        
-    }
+}
 
 function resetState(){
     nextButton.style.display = "none";
-    while(answerNuttons.firstChild){
-        answerButtons.removeChild(answerButtons.firstChild);
+    while(answerButton.firstChild){
+        answerButton.removeChild(answerButton.firstChild);
   }
 }
 
-    startquiz();
+function selectAnswer(e){
+    const selectBtn = e.target;
+    const isCorrect = selectBtn.dataset.correct === "true";
+    if(isCorrect){
+        selectBtn.classList.add("correct");
+        score++;
+    }else{
+        selectBtn.classList.add("incorrect");
+    }
+    Array.from(answerButton.children).forEach(button => {
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
+function showScore(){
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextButton.innerHTML = "play again"
+}
+
+function handleNextButton(){
+    currentQuestionIndex++
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+}
+nextButton.addEventListener("click", () =>{
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    }else{
+        startQuiz();
+    }
+});
+startQuiz();
