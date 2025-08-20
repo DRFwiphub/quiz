@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
    <head>
-      <title>Quiz Example</title>
+      <meta charset="utf-8">
+      <meta name="author" content="Daniel Flatt">
+      <meta name="description" content="Wheel of Time Quiz">
+      <meta name="keywords" content="Wheel of Time, Dragon Reborn, Quiz, Robert Jordan">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="style.css">
+      <title>Quiz Example</title>
    </head>
    <body>
-      <div class="app">
-         <h1>Simple Quiz</h1>
-         <div class="quiz">
-            <h2 id="question">question placeholder</h2>
-            <div id="answer-buttons">
-               <button class="btn">Answer 1</button>
-               <button class="btn">Answer 2</button>
-               <button class="btn">Answer 3</button>
-               <button class="btn">Answer 4</button>
+      <div class="container">
+         <div class="app">
+            <h1>Welcome to My Wheel of Time Quiz</h1>
+            <button class="start" id="start-btn">Start the game?</button>
+            <div class="quiz">
+               <h2 id="question">question placeholder text</h2>
+               <div id="answer-buttons">
+                  <button class="btn">Answer 1</button>
+                  <button class="btn">Answer 2</button>
+                  <button class="btn">Answer 3</button>
+                  <button class="btn">Answer 4</button>
+               </div>
             </div>
+            <button class="next-btn" id="next-btn">next</button>
+            <button class="restart" id="replay-btn">Would you care to try again?</button>
          </div>
-         <button class="next-btn">next</button>
       </div>
       <script src="script.js"></script>
    </body>
-   
 </html>
