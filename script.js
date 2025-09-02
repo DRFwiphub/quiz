@@ -1,10 +1,32 @@
 const startBtn = document.getElementById("start-btn");
+const replayBtn = document.getElementById("replay-btn");
+const startInfo = document.getElementById("start-info");
 
-startBtn.addEventListener('click', () => {
-    startBtn.style.display = "none"; 
-    document.querySelector('.quiz').style.display = "block"; 
-    startQuiz();
-});
+if (startBtn) {
+    startBtn.addEventListener('click', () => {
+        hideStartAndReplay();
+        document.querySelector('.quiz').style.display = "block"; 
+        startQuiz();
+    });
+}
+
+if (replayBtn) {
+    replayBtn.addEventListener('click', () => {
+        replayBtn.style.display = "none"; 
+        document.querySelector('.quiz').style.display = "block"; 
+        startQuiz();
+    });
+}
+
+function hideStartAndReplay() {
+    if (startBtn) {
+        startBtn.style.display = "none";
+    }
+    if (replayBtn) {
+        replayBtn.style.display = "none";
+    }
+    startInfo.style.display ="none";
+}
 
 const questions = [
     {
@@ -63,31 +85,39 @@ const questions = [
         wrong: "Lanfear, Demandred and Semirhage are all part of the Chosen"
     },
     {
-        question: "is ruby cute",
+        question: "Callandor is referred to as 'the sword that is not a sword'",
         answers: [
             { text: "false", correct: false},
             { text: "true", correct: true}
         ],
-        right: "Ruby is cute!",
-        wrong: "You should know Ruby is cute!"
+        right: "it's an angrel",
+        wrong: "It's not a sword it's a sword shaped angrel"
     },
     {
-        question: "What's Ruby's oddest food choice?",
+        question: "2*2/2+2",
         answers: [
-            { text: "Pandabao!!", correct: false },
-            { text: "Onogiryyy!", correct: false },
-            { text: "Pastrybun bun bun bun", correct: false },
-            { text: "Anythinging tastyyyy", correct: false },    
-            { text: "RaNdOm..", correct: right }
+            { text: "2", correct: false },
+            { text: "4", correct: true },
+            { text: "6", correct: false },
+            { text: "8", correct: false }
         ],
-        wrong: "SShhhh! It's a secret!"
+        right: "It's 4",
+        wrong: "It's 4, following the BoDMAS rule, it's 2/2=1, 1*2=2, 2+2=4"
     },
+    {
+        question: "2 is the squareroot of 4",
+        answers: [
+            { text: "true", correct: true},
+            { text: "false", correct: false}
+        ],
+        right: "2*2 = 4",
+        wrong: "2*2 = 4"
+    }
 ];
 
 const questionElement = document.getElementById("question");
 const answerButton= document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
-const replayButton = document.getElementById("replay-btn")
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -96,7 +126,7 @@ function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "next";
-    shuffle(questions); // Shuffle once at the start!
+    shuffle(questions); 
     showQuestion();
 }
 
@@ -106,10 +136,10 @@ function showQuestion(){
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
 
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    questionElement.innerHTML = "Question " + questionNo + ": " + currentQuestion.question;
+    shuffle(currentQuestion.answers);
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement('button');
-
         button.innerHTML = answer.text;
         button.classList.add('btn');
         answerButton.appendChild(button);
@@ -167,10 +197,10 @@ function selectAnswer(e){
 function showScore(){
     resetState();
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    replayButton.style.display = "block"; 
+    replayBtn.style.display = "block"; 
 }
-replayButton.addEventListener('click', () => {
-    replayButton.style.display = "none"; 
+replayBtn.addEventListener('click', () => {
+    replayBtn.style.display = "none"; 
     document.querySelector('.quiz').style.display = "block"; 
     startQuiz();
 });

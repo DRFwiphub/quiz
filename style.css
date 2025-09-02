@@ -11,6 +11,7 @@ body{
 }
 .container{
     flex-direction: column;
+    justify-content: center;
 }
 button{
     background: #001e4d;
@@ -19,12 +20,31 @@ button{
     width: 150px;
     border: 0;
     padding: 10px;
-    margin: 20px auto 0;
+    margin: 20px;
     border-radius: 4px;
     cursor: pointer;
 }
+i{
+    text-align: center;
+}
+a:link, a:visited{
+    color: #fff;
+}
+.guide a:link, a:visited {
+  background-color: #f44336;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.guide a:visited {
+  background-color: #f44336;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
 .app{
-    display: flexbox;
     background: #D0F0C0;
     width: 90%;
     max-width: 600px;
@@ -40,9 +60,15 @@ button{
     padding-bottom: 30px;
     margin-bottom: 10px;
 }
+.app img{
+    max-width: 300px;
+    max-height: 200px;
+    margin: 10px;
+    border: solid 2px black;
+}
 .start{
     justify-content: center;
-    margin: auto;
+    margin: 15px;
 }
 .quiz{
     display: none;
@@ -101,4 +127,11 @@ button{
 }
 h3{
     font-style: italic;
+}
+.guide{
+    justify-content: left;
+}
+.startpage p{
+    font-weight: bold;
+    
 }

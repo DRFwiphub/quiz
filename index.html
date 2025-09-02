@@ -13,7 +13,11 @@
       <div class="container">
          <div class="app">
             <h1>Welcome to My Wheel of Time Quiz</h1>
-            <button class="start" id="start-btn">Start the game?</button>
+            <div class="startpage" id="start-info">
+               <button class="start" id="start-btn">Start the game?</button>
+               <p>Please click the how to play button if you are unsure how to play</p>
+               <button class="guide" onclick="window.location.href='howto.html'">How to play</button>
+            </div>
             <div class="quiz">
                <h2 id="question">question placeholder text</h2>
                <div id="answer-buttons">
@@ -28,7 +32,12 @@
                <h3 id="flavour-text">text placeholder</h3>
             </div>
             <button class="next-btn" id="next-btn">next</button>
-            <button class="restart" id="replay-btn">Would you care to try again?</button>
+            <div class="restart" id="replay-btn">
+               
+               <button>Would you care to try again?</button>
+               <p>If you would like to read the guide, please press the how to play buttom</p>
+               <button class="guide" onclick="window.location.href='howto.html'">How to play</button>
+            </div>
          </div>
       </div>
       <script src="script.js"></script>
