@@ -3,15 +3,16 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    text-align: center;
     justify-content: center;
 }
 body{
     background-image: url('images/bgimage.jpg');
 }
-.container{
+.container {
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 }
 button{
     background: #001e4d;
@@ -20,15 +21,23 @@ button{
     width: 150px;
     border: 0;
     padding: 10px;
-    margin: 20px;
+    margin: 10px auto 10px;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 i{
-    text-align: center;
+    margin: 5px auto;
+}
+p{
+    margin: 10px auto 10px;
+}
+img{
+    margin: 10px auto 10px;
 }
 a:link, a:visited{
-    color: #fff;
+    color: red;
 }
 .guide a:link, a:visited {
   background-color: #f44336;
@@ -59,6 +68,7 @@ a:link, a:visited{
     border-bottom: 1px solid #333;
     padding-bottom: 30px;
     margin-bottom: 10px;
+    text-align: center;
 }
 .app img{
     max-width: 300px;
@@ -67,8 +77,9 @@ a:link, a:visited{
     border: solid 2px black;
 }
 .start{
+    display: flex;
     justify-content: center;
-    margin: 15px;
+    margin: 10px auto 10px;
 }
 .quiz{
     display: none;
@@ -88,10 +99,11 @@ a:link, a:visited{
     border: 1px solid #222;
     padding: 10px;
     margin: 10px 0;
-    text-align: left;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s;
+    text-align: center;
+    justify-content: center;
 }
 .btn:hover:not([disabled]){
     background: #222;
@@ -112,10 +124,10 @@ a:link, a:visited{
     cursor: pointer;
     display: none;
 }
-.correct{
+.correct, .checkbox-correct{
     background-color: #9aeabc;
 }
-.incorrect{
+.incorrect, .checkbox-incorrect{
     background-color: #ff9393;
 }
 .restart{
@@ -129,9 +141,15 @@ h3{
     font-style: italic;
 }
 .guide{
-    justify-content: left;
+    justify-content: center;
 }
 .startpage p{
-    font-weight: bold;
-    
+    font-weight: bold;   
+}
+.quiz-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #007bff;
+    margin: 10px 8px 10px;
+    vertical-align: middle;
 }

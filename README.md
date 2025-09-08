@@ -6,28 +6,31 @@ quiz
 
 The Website itself has a heavy relience on <button> from begining to end.
 
-![](/images/welcome.jpg)
+![start page](/images/welcome.jpg)
 
-There are multiple choice questions as well as True or False questions.
+There are multiple choice questions as well as True or False questions and multiple answer questions.
 
-![](/images/question.jpg)
-![](/images/truefalse.jpg)
+![multiple choice](/images/question.jpg)
+
+![true or false](/images/truefalse.jpg)
+
+![checkbox](/images/multipleanswers.jpg)
 
 Both the Question order and Anwsers are Randomised to avoid easy answers.
 
-![](/images/randomised.jpg)
+![radomised answers](/images/randomised.jpg)
 
 when correct the answer is green and some flavour text appears to validate your choice.
 
-![](/images/correct.jpg)
+![correct](/images/correct.jpg)
 
 If the answer is incorrect, then the answer you chose is highligted in red and the correct answer is highlighted in green. there is also some flavour text to inform you which is the correct answer and why.
 
-![](/images/wrong.jpg)
+![incorrect](/images/wrong.jpg)
 
 At the end of the game the score for the quiz 
 
-![](/images/score.jpg)
+![total score](/images/score.jpg)
 
 # Technologies
 
@@ -52,6 +55,5 @@ the CSS Validator(https://jigsaw.w3.org/) found no issues.
 # Sources/Resources
 
 StackOverflow, W3schools, Various books including Javascript in easy steps and javascript ninja.
-The background Image used was sourced from https://unsplash.com/
-JShint for javascript testing, 
+The background Image used was sourced from https://unsplash.com/ 
 html formatted with https://www.freeformatter.com/

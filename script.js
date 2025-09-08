@@ -90,28 +90,51 @@ const questions = [
             { text: "false", correct: false},
             { text: "true", correct: true}
         ],
-        right: "it's an angrel",
-        wrong: "It's not a sword it's a sword shaped angrel"
+        right: "it's an Sa'Angrel",
+        wrong: "It's not a sword it's a sword shaped Sa'Angrel"
     },
     {
-        question: "2*2/2+2",
+        question: "Which title does not belong to Rand Al'Thor",
         answers: [
-            { text: "2", correct: false },
-            { text: "4", correct: true },
-            { text: "6", correct: false },
-            { text: "8", correct: false }
+            { text: "Coramoor", correct: false },
+            { text: "Car'a'carn", correct: false },
+            { text: "The Prince of Ravens", correct: true },
+            { text: "He who comes with the Dawn", correct: false }
         ],
-        right: "It's 4",
-        wrong: "It's 4, following the BoDMAS rule, it's 2/2=1, 1*2=2, 2+2=4"
+        right: "Mat is The Prince of Ravens",
+        wrong: "Rand has many Titles including the Coramorr, Car'a'carn, and He who comes with the Dawn."
     },
     {
-        question: "2 is the squareroot of 4",
+        question: "Faile's original hunter name was the same as Lan's Horse",
         answers: [
             { text: "true", correct: true},
             { text: "false", correct: false}
         ],
-        right: "2*2 = 4",
-        wrong: "2*2 = 4"
+        right: "Perrin laughed at her about it",
+        wrong: "Perrin pointed out the horse's name was Mandarb, Failes chosen hunter name."
+    },
+    {
+        question: "Which of these are Aes Sedai Ajahs? (Select all that apply)",
+        type: "checkbox", 
+        answers: [
+            { text: "Red", correct: true },
+            { text: "Blue", correct: true },
+            { text: "Black", correct: true },
+            { text: "Gold", correct: false }
+        ],
+        right: "Red, Blue, and Black are all Ajahs.",
+        wrong: "Gold is not an Ajah."
+    },
+    {
+        question: "Which of these is NOT a city in the Wheel of Time?",
+        answers: [
+            { text: "Tar Valon", correct: false },
+            { text: "Caemlyn", correct: false },
+            { text: "Emond's Field", correct: false },
+            { text: "Winterfell", correct: true }
+        ],
+        right: "Winterfell is from another fantasy series.",
+        wrong: "Tar Valon, Caemlyn, and Emond's Field are all cities in the Wheel of Time."
     }
 ];
 
@@ -132,22 +155,45 @@ function startQuiz(){
 
 function showQuestion(){
     resetState();
-    
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
-
     questionElement.innerHTML = "Question " + questionNo + ": " + currentQuestion.question;
-    shuffle(currentQuestion.answers);
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerHTML = answer.text;
-        button.classList.add('btn');
-        answerButton.appendChild(button);
-        if(answer.correct){
-            button.dataset.correct = answer.correct;
-        }
-        button.addEventListener("click", selectAnswer);
-    });   
+
+    if (currentQuestion.type === "checkbox") {
+        shuffle(currentQuestion.answers);
+        currentQuestion.answers.forEach((answer, idx) => {
+            const label = document.createElement('label');
+            label.style.display = "block";
+            const checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.name = "answer";
+            checkbox.value = idx;
+            checkbox.classList.add("quiz-checkbox"); // <-- Add this line
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(" " + answer.text));
+            answerButton.appendChild(label);
+        });
+
+        // Add a submit button for checkbox questions
+        const submitBtn = document.createElement('button');
+        submitBtn.textContent = "Submit";
+        submitBtn.classList.add('btn');
+        submitBtn.addEventListener("click", checkCheckboxAnswer);
+        answerButton.appendChild(submitBtn);
+    } else {
+        // Default: single-answer (button) question
+        shuffle(currentQuestion.answers);
+        currentQuestion.answers.forEach(answer => {
+            const button = document.createElement('button');
+            button.innerHTML = answer.text;
+            button.classList.add('btn');
+            answerButton.appendChild(button);
+            if(answer.correct){
+                button.dataset.correct = answer.correct;
+            }
+            button.addEventListener("click", selectAnswer);
+        });
+    }
 }
 function flavourRight() {
     let current = questions[currentQuestionIndex];
@@ -232,3 +278,43 @@ function shuffle(array) {
     }
 }
 
+function checkCheckboxAnswer() {
+    let current = questions[currentQuestionIndex];
+    const checkboxes = answerButton.querySelectorAll('input[type="checkbox"]');
+    const labels = answerButton.querySelectorAll('label');
+    let allCorrect = true;
+    let anyChecked = false;
+
+    checkboxes.forEach((cb, idx) => {
+        const shouldBeChecked = !!current.answers[idx].correct;
+        if (shouldBeChecked) {
+            labels[idx].classList.add('checkbox-correct');
+        } else {
+            labels[idx].classList.add('checkbox-incorrect');
+        }
+        if (cb.checked !== shouldBeChecked) {
+            allCorrect = false;
+        }
+        if (cb.checked) anyChecked = true;
+    });
+
+    if (!anyChecked) {
+        alert("Please select at least one answer.");
+        labels.forEach(label => {
+            label.classList.remove('checkbox-correct', 'checkbox-incorrect');
+        });
+        return;
+    }
+
+    if (allCorrect) {
+        flavourRight();
+        score++;
+    } else {
+        flavourWrong();
+    }
+
+    Array.from(checkboxes).forEach((cb) => {
+        cb.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
