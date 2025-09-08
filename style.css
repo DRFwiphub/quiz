@@ -3,14 +3,16 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    text-align: center;
     justify-content: center;
 }
 body{
     background-image: url('images/bgimage.jpg');
 }
-.container{
+.container {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 button{
     background: #001e4d;
@@ -19,12 +21,39 @@ button{
     width: 150px;
     border: 0;
     padding: 10px;
-    margin: 20px auto 0;
+    margin: 10px auto 10px;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+i{
+    margin: 5px auto;
+}
+p{
+    margin: 10px auto 10px;
+}
+img{
+    margin: 10px auto 10px;
+}
+a:link, a:visited{
+    color: red;
+}
+.guide a:link, a:visited {
+  background-color: #f44336;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.guide a:visited {
+  background-color: #f44336;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 .app{
-    display: flexbox;
     background: #D0F0C0;
     width: 90%;
     max-width: 600px;
@@ -39,10 +68,18 @@ button{
     border-bottom: 1px solid #333;
     padding-bottom: 30px;
     margin-bottom: 10px;
+    text-align: center;
+}
+.app img{
+    max-width: 300px;
+    max-height: 200px;
+    margin: 10px;
+    border: solid 2px black;
 }
 .start{
+    display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 10px auto 10px;
 }
 .quiz{
     display: none;
@@ -62,10 +99,11 @@ button{
     border: 1px solid #222;
     padding: 10px;
     margin: 10px 0;
-    text-align: left;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s;
+    text-align: center;
+    justify-content: center;
 }
 .btn:hover:not([disabled]){
     background: #222;
@@ -86,10 +124,10 @@ button{
     cursor: pointer;
     display: none;
 }
-.correct{
+.correct, .checkbox-correct{
     background-color: #9aeabc;
 }
-.incorrect{
+.incorrect, .checkbox-incorrect{
     background-color: #ff9393;
 }
 .restart{
@@ -101,4 +139,17 @@ button{
 }
 h3{
     font-style: italic;
+}
+.guide{
+    justify-content: center;
+}
+.startpage p{
+    font-weight: bold;   
+}
+.quiz-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #007bff;
+    margin: 10px 8px 10px;
+    vertical-align: middle;
 }
