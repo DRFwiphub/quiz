@@ -38,6 +38,8 @@ HTML - used as a base for the site.
 CSS - used for display and control elements.
 CSS flexbox - flexbox was used for the layout.
 Javascript - Used for quiz Functionality and control of elements.
+The Fisher-Yates algorithm - for randomisation of question elements
+LazySizes library by AFarkas - for image handling https://github.com/aFarkas/lazysizes?tab=readme-ov-file
 VSCode - the IDE.
 GitHub - the host for the version control.
 Git - the version control method.

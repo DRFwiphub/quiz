@@ -1,90 +1,6 @@
 import { questions } from "./questions.js";
-import { checkCheckboxAnswer } from "./quizstructure.js";
 
-
-const startBtn = document.getElementById("start-btn");
-const replayBtn = document.getElementById("replay-btn");
-const startInfo = document.getElementById("start-info");
-const questionElement = document.getElementById("question");
-const answerButton= document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
-
-let currentQuestionIndex = 0;
-let score = 0;
-
-if (startBtn) {
-    startBtn.addEventListener('click', () => {
-        hideStartAndReplay();
-        document.querySelector('.quiz').style.display = "block"; 
-        startQuiz();
-    });
-}
-if (replayBtn) {
-    replayBtn.addEventListener('click', () => {
-        replayBtn.style.display = "none"; 
-        document.querySelector('.quiz').style.display = "block"; 
-        startQuiz();
-    });
-}
-function hideStartAndReplay() {
-    if (startBtn) {
-        startBtn.style.display = "none";
-    }
-    if (replayBtn) {
-        replayBtn.style.display = "none";
-    }
-    startInfo.style.display ="none";
-}
-function startQuiz(){   
-    currentQuestionIndex = 0;
-    score = 0;
-    nextButton.innerHTML = "next";
-    shuffle(questions); 
-    showQuestion();
-}
-function resetState(){
-    nextButton.style.display = "none";
-    while(answerButton.firstChild){
-        answerButton.removeChild(answerButton.firstChild);
-  }
-}
-function showScore(){
-    resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-    replayBtn.style.display = "block"; 
-}
-replayBtn.addEventListener('click', () => {
-    replayBtn.style.display = "none"; 
-    document.querySelector('.quiz').style.display = "block"; 
-    startQuiz();
-});
-function handleNextButton(){
-    var flavourDivs = document.getElementsByClassName('flavour');
-    if (flavourDivs.length > 0) {
-        flavourDivs[0].style.display = "none";
-    }
-    currentQuestionIndex++
-    if(currentQuestionIndex < questions.length){
-        showQuestion();
-    }else{
-        showScore();
-    }
-}
-nextButton.addEventListener("click", () =>{
-    if(currentQuestionIndex < questions.length){
-        handleNextButton();
-    }else{
-        startQuiz();
-    } 
-});
-function shuffle(questions) { //fisher-yates algorthim, j is randomly chosen between i & 0 to uniformly shuffle the array at random
-    for (let i = questions.length - 1; i > 0; i--) {
-        var incrementIndex= i + 1;
-        const j = Math.floor(Math.random() * (incrementIndex));
-        [questions[i], questions[j]] = [questions[j], questions[i]];
-    }
-}/*
-function checkCheckboxAnswer() {
+export function checkCheckboxAnswer(currentQuestionIndex, answerButton, nextButton, flavourRight, flavourWrong, scoreObj) {
     let current = questions[currentQuestionIndex];
     const checkboxes = answerButton.querySelectorAll('input[type="checkbox"]');
     const labels = answerButton.querySelectorAll('label');
@@ -123,8 +39,8 @@ function checkCheckboxAnswer() {
         cb.disabled = true;
     });
     nextButton.style.display = "block";
-}*/
-function selectAnswer(e){
+}
+/*export function selectAnswer(e){
     const selectBtn = e.target;
     const isCorrect = selectBtn.dataset.correct === "true";
     if(isCorrect){
@@ -143,7 +59,7 @@ function selectAnswer(e){
     });
     nextButton.style.display = "block";
 }
-function flavourRight() {
+export function flavourRight() {
     let current = questions[currentQuestionIndex];
     const flavourText = document.getElementById("flavour-text");
     flavourText.innerHTML = `Correct, ${current.right}`;
@@ -152,7 +68,7 @@ function flavourRight() {
         rht[0].style.display = "block";
     }
 }
-function flavourWrong() {
+export function flavourWrong() {
     let current = questions[currentQuestionIndex];
     const flavourText = document.getElementById("flavour-text");
     flavourText.innerHTML = `${current.wrong}`;
@@ -161,7 +77,7 @@ function flavourWrong() {
         wng[0].style.display = "block";
     }
 }
-function showQuestion(){
+export function showQuestion(){
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
@@ -199,4 +115,4 @@ function showQuestion(){
             button.addEventListener("click", selectAnswer);
         });
     }
-}
+}*/
