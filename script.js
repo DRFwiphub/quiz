@@ -1,6 +1,5 @@
 import { questions } from "./questions.js";
-import { checkCheckboxAnswer } from "./quizstructure.js";
-
+//import { flavourRight, flavourWrong, showQuestion, selectAnswer} from "./quizstructure.js";
 
 const startBtn = document.getElementById("start-btn");
 const replayBtn = document.getElementById("replay-btn");
@@ -11,6 +10,8 @@ const nextButton = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
+
+
 
 if (startBtn) {
     startBtn.addEventListener('click', () => {
@@ -77,13 +78,13 @@ nextButton.addEventListener("click", () =>{
         startQuiz();
     } 
 });
-function shuffle(questions) { //fisher-yates algorthim, j is randomly chosen between i & 0 to uniformly shuffle the array at random
+function shuffle(questions) { 
     for (let i = questions.length - 1; i > 0; i--) {
         var incrementIndex= i + 1;
         const j = Math.floor(Math.random() * (incrementIndex));
         [questions[i], questions[j]] = [questions[j], questions[i]];
     }
-}/*
+}
 function checkCheckboxAnswer() {
     let current = questions[currentQuestionIndex];
     const checkboxes = answerButton.querySelectorAll('input[type="checkbox"]');
@@ -123,7 +124,7 @@ function checkCheckboxAnswer() {
         cb.disabled = true;
     });
     nextButton.style.display = "block";
-}*/
+}
 function selectAnswer(e){
     const selectBtn = e.target;
     const isCorrect = selectBtn.dataset.correct === "true";
