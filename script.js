@@ -1,12 +1,8 @@
 import { questions } from "./questions.js";
 import { startBtn, startInfo, replayBtn, questionElement, answerButton, nextButton } from "./domElements.js";
-//import { flavourRight, flavourWrong, showQuestion, selectAnswer} from "./quizstructure.js";
-
 
 export let currentQuestionIndex = 0;
 export let score = 0;
-
-
 
 if (startBtn) {
     startBtn.addEventListener('click', () => {
@@ -53,7 +49,7 @@ replayBtn.addEventListener('click', () => {
     replayBtn.style.display = "none"; 
     document.querySelector('.quiz').style.display = "block"; 
     startQuiz();
-});
+})
 function handleNextButton(){
     var flavourDivs = document.getElementsByClassName('flavour');
     if (flavourDivs.length > 0) {
@@ -76,8 +72,8 @@ nextButton.addEventListener("click", () =>{
 export function shuffle(questions) { 
     for (let i = questions.length - 1; i > 0; i--) {
         var incrementIndex= i + 1;
-        const j = Math.floor(Math.random() * (incrementIndex));
-        [questions[i], questions[j]] = [questions[j], questions[i]];
+        const loopControl = Math.floor(Math.random() * (incrementIndex));
+        [questions[i], questions[loopControl]] = [questions[loopControl], questions[i]];
     }
 }
 function checkCheckboxAnswer() {
