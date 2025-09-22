@@ -1,6 +1,8 @@
 import { questions } from "./questions.js";
-import { currentQuestionIndex, questionElement, answerButton, nextButton, score} from "./script.js";
-import { resetState, shuffle, handleNextButton } from "./script.js";
+import { currentQuestionIndex, score} from "./script.js";
+import { shuffle}  from "./script.js";
+import { questionElement, answerButton, nextButton } from "./domElements.js";
+
 
 export function showQuestion(){
     resetState();

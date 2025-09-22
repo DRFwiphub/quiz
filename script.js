@@ -1,15 +1,10 @@
 import { questions } from "./questions.js";
+import { startBtn, startInfo, replayBtn, questionElement, answerButton, nextButton } from "./domElements.js";
 //import { flavourRight, flavourWrong, showQuestion, selectAnswer} from "./quizstructure.js";
 
-const startBtn = document.getElementById("start-btn");
-const replayBtn = document.getElementById("replay-btn");
-const startInfo = document.getElementById("start-info");
-const questionElement = document.getElementById("question");
-const answerButton= document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
 
-let currentQuestionIndex = 0;
-let score = 0;
+export let currentQuestionIndex = 0;
+export let score = 0;
 
 
 
@@ -78,7 +73,7 @@ nextButton.addEventListener("click", () =>{
         startQuiz();
     } 
 });
-function shuffle(questions) { 
+export function shuffle(questions) { 
     for (let i = questions.length - 1; i > 0; i--) {
         var incrementIndex= i + 1;
         const j = Math.floor(Math.random() * (incrementIndex));
