@@ -1,6 +1,6 @@
 # Project overview
 
-quiz
+This project is a Quiz on the Wheel of Time series by Robert Jordan and completed posthumously by his Wife and Brandon Sanderson. There aare 10 questions all in all, using true or false statements and different types of multiple choice questions
 
 # Functionalities
 
@@ -49,8 +49,11 @@ Git - the version control method.
 
 # Notes
 
-The HTML validator(https://validator.w3.org/) found the errors with three placeholder links on the about me page. It also did not like the blanck src=" " on my modal on the gallery page.
+The HTML validator(https://validator.w3.org/) 
 the CSS Validator(https://jigsaw.w3.org/) found no issues.
+
+a bug appears with a low internet connection speeds where the quiz flashes up when the 'how to play' button appears on the score screen.
+
 
 # Sources/Resources
 
